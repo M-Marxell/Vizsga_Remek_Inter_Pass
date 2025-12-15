@@ -29,7 +29,10 @@ body {
   background:chocolate;
   z-index: 1000;
 }
-
+.topbar .nav-link{
+  font-weight: 600;
+  margin-left: auto;
+}
 .menu-btn {
   background: chocolate;
   border: 1px;
