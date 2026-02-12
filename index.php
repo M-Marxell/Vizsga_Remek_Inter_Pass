@@ -1,7 +1,7 @@
 <?php
     session_start();
 ?>
-<!--TODO: Ha nem vagy bejelentkezve, akkor hibát dob...javítva ,,,, ennek function hogy egyből a login pagre dobjon. meg van.. interpass home page ide -->
+    
 <?php
 if (!isset($_SESSION['username'])) {
     header("Location: Login_Page_index.php");
