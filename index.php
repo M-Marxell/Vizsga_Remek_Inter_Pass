@@ -1,10 +1,11 @@
 <?php
     session_start();
 ?>
-<!--TODO: Ha nem vagy bejelentkezve, akkor hibát dob-->
+<!--TODO: Ha nem vagy bejelentkezve, akkor hibát dob...javítva ,,,, ennek function hogy egyből a login pagre dobjon. meg van.. interpass home page ide -->
 <?php
 if (!isset($_SESSION['username'])) {
-    die("Hiba: Nem vagy bejelentkezve!");
+    header("Location: Login_Page_index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -15,10 +16,10 @@ if (!isset($_SESSION['username'])) {
     <title>Document</title>
 </head>
 <body>
-    <h1>BEJELENTKEZTÉL!!!</h1>
+    
     <?php
-    echo $_SESSION['username'];
-
+    header("Location: interpasshomepage.html");
+    exit;
     ?>
     
 </body>

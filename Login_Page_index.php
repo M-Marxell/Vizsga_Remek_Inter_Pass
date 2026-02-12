@@ -70,7 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bind_result($id, $db_username, $db_hash);
         $stmt->fetch();
 
-        if (password_verify($password, $db_hash = "")) { // jelszó ellenőrzés[web:38][web:41]
+        
+
+        if (password_verify($password, $db_hash)) { // jelszó ellenőrzés[web:38][web:41]
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $db_username;
             header("Location: interpasshomepage.html"); // ide mehet a főoldal
