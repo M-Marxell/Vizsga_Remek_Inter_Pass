@@ -1,7 +1,12 @@
 <?php
     session_start();
 ?>
-
+<!--TODO: Ha nem vagy bejelentkezve, akkor hibát dob-->
+<?php
+if (!isset($_SESSION['username'])) {
+    die("Hiba: Nem vagy bejelentkezve!");
+}
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
