@@ -1,0 +1,51 @@
+
+/* A teljes oldal alapbeállításai */
+body {
+    font-family: sans-serif;
+    background-color: seagreen;
+    margin: 0;
+    padding: 20px;
+
+}
+
+/* A rács elrendezés (Egymás mellé és alá kerülés) */
+.container {
+    display: grid;
+    /* Ez a sor a felelős az automatikus tördelésért! */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Távolság a kártyák között */
+    max-width: 1200px; /* Ne legyen túl széles nagy monitoron */
+    margin: 0 auto; /* Középre igazítja a konténert */
+}
+
+/* Maga a kártya kinézete */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* A kártyán belül az elemek egymás alá kerüljenek */
+}
+
+/* A kép formázása */
+.card img {
+    width: 100%; /* Kitölti a kártya szélességét */
+    height: 200px; /* Fix magasság, hogy egységesek legyenek */
+    object-fit: cover; /* Kitölti a teret anélkül, hogy torzulna a kép */
+    border-radius: 5px;
+    border: black 2px solid;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin: 15px 0 10px 0;
+    color: #333;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+    flex-grow: 1; /* Kitölti a maradék helyet, ha a leírás rövid */
+}
