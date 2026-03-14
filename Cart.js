@@ -12,16 +12,16 @@ function megjelenitKosarat() {
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
             <div class="item-details">
-                <h3>${tetel.name}</h3>
-                <p>Ár: ${tetel.price} Ft</p>
+                <h3>${esemeny.nev}</h3>
+                <p>Ár: ${esemeny.jegy_ara} Ft</p>
             </div>
             <div class="quantity-controls">
                 <button onclick="valtoztatMennyiseget(${tetel.id}, -1)">-</button>
-                <span>${tetel.quantity}</span>
+                <span>${esemeny.quantity}</span>
                 <button onclick="valtoztatMennyiseget(${tetel.id}, 1)">+</button>
             </div>
-            <div class="item-total">${tetel.price * tetel.quantity} Ft</div>
-            <button class="remove-btn" onclick="torolTermeket(${tetel.id})">Törlés</button>
+            <div class="item-total">${esemeny.jegy_ara * esemeny.quantity} Ft</div>
+            <button class="remove-btn" onclick="torolTermeket(${esemeny.id})">Törlés</button>
         `;
         kosarElem.appendChild(itemDiv);
     });
