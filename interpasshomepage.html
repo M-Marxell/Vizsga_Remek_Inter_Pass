@@ -1,46 +1,30 @@
 <!doctype html>
 <html lang="hu">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inter Pass</title>
-  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="homepagestyle.css">
 </head>
+
 <body>
   <header class="topbar">
     <button class="menu-btn" id="menuBtn" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
     <div class="top-title">Inter Pass</div>
-    
-    <!-- <div class="logo">LOGO</div>  -->
-    <div class="nav-link"><a href="Login_Page_index.html"  id="login">Bejelentkezés</a></div>
+    <div class="logo">LOGO</div>
   </header>
 
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <nav>
       <ul>
-        <li><button type="button" class="nav-link" id="homeBtn"><a href="interpasshomepage.html">Kezdőlap</a></button></li>
-        <li><button type="button" class="nav-link" id="aboutBtn">Rólunk</button></li>
-
-        <!-- 3. hely: összehúzható menü -->
-        <li>
-          <button type="button" class="nav-link" id="servicesBtn" aria-expanded="false" aria-controls="servicesMenu">
-            Események
-          </button>
-
-          <ul class="submenu" id="servicesMenu" aria-hidden="true">
-            <li><button type="button" class="nav-link">Koncertek</button></li>
-            <li><button type="button" class="nav-link">Sport Események</button></li>
-            <li><button type="button" class="nav-link">Szinházi Események</button></li>
-            <li><button type="button" class="nav-link">Mozifilmek</button></li>
-            <li><button type="button" class="nav-link">Rendezvények</button></li>
-            <li><button type="button" class="nav-link">Fesztiválok</button></li>
-          </ul>
-        </li>
-
-        <li><button type="button" class="nav-link" id="contactBtn">Kapcsolat</button></li>
+        <li><a href="#">Kezdőlap</a></li>
+        <li><a href="#">Rólunk</a></li>
+        <li><a href="#">Szolgáltatások</a></li>
+        <li><a href="#">Kapcsolat</a></li>
       </ul>
     </nav>
   </aside>
@@ -51,27 +35,100 @@
   <main class="content">
     <section class="cards">
       <article class="card">
-        <div class="card-body"></div>
+        <div class="card-body">
+          <p>Saját jegyek</p>
+
+        </div>
+        <button class="card-cta">Gomb</button>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <p>Közelgő</p>
+
+        </div>
 
         <button class="card-cta">Gomb</button>
       </article>
 
       <article class="card">
-        <div class="card-body"></div>
-        
-        <button class="card-cta">Gomb</button>
-      </article>
+        <div class="card-body">
+          <p>Ajánlott</p>
 
-      <article class="card">
-        <div class="card-body"></div>
-        
+        </div>
+
         <button class="card-cta">Gomb</button>
       </article>
     </section>
   </main>
+  
+  
 
-  <footer class="bottomline"></footer>
+
+
+      <div class="ajanlott_slider">
+        <div class="slider-track">
+          <img src="ajanlott_slider.jpg" alt="Ajánlott Események">
+          <img src="ajanlott_slider.jpg" alt="Ajánlott Események">
+        </div>
+      </div>
+  
+  
+  
+  
+  <footer class="bottomline">
+    <h3>cigányok csinálták ezt</h3>
+  </footer>
 
   <script src="script.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // Megszólítjuk a saját API-nkat
+      fetch('api.php')
+        .then(response => response.json())
+        .then(data => {
+          
+          // --- 1. Saját jegyek kártya feltöltése ---
+          const sajatDiv = document.getElementById('kartya-sajat');
+          if(data.sajat_jegyek.length > 0) {
+            sajatDiv.innerHTML = data.sajat_jegyek.map(item => `
+              <div class="api-item">
+                <strong> ${item.alkalom_neve}</strong>
+                <small>${item.datum}</small>
+              </div>
+            `).join('');
+          } else {
+            sajatDiv.innerHTML = '<p><small>Még nincs saját jegyed.</small></p>';
+          }
+
+          // --- 2. Közelgő kártya feltöltése ---
+          const kozelgoDiv = document.getElementById('kartya-kozelgo');
+          kozelgoDiv.innerHTML = data.kozelgo.map(item => `
+            <div class="api-item">
+              <strong> ${item.alkalom_neve}</strong>
+              <small>${item.datum}</small>
+            </div>
+          `).join('');
+
+          // --- 3. Ajánlott kártya feltöltése ---
+          const ajanlottDiv = document.getElementById('kartya-ajanlott');
+          ajanlottDiv.innerHTML = data.ajanlott.map(item => `
+            <div class="api-item">
+              <strong> ${item.alkalom_neve}</strong>
+              <small>${item.datum}</small>
+            </div>
+          `).join('');
+
+        })
+        .catch(error => {
+          console.error("Hiba az API hívásakor:", error);
+          document.getElementById('kartya-sajat').innerHTML = '<span style="color:red">Hiba az adatok betöltésekor.</span>';
+          document.getElementById('kartya-kozelgo').innerHTML = '';
+          document.getElementById('kartya-ajanlott').innerHTML = '';
+        });
+    });
+  </script>
 </body>
+
 </html>
