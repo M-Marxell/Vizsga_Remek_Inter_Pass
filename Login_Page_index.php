@@ -1,4 +1,46 @@
+<?php
+session_start();
+require 'config.php';
 
+$error_message = ""; // Ebben tároljuk a hibákat
+
+if (isset($_POST['login_btn'])) {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($username === '' || $password === '') {
+        $error_message = "Minden mezőt töltsön ki.";
+    } else {
+        // felhasználó lekérdezése
+        $stmt = $conn->prepare("SELECT id, username, jelszo_hash FROM users WHERE username = ?");
+        
+        if (!$stmt) {
+            $error_message = "Hiba a lekérdezés előkészítésekor.";
+        } else {
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows === 1) {
+                $stmt->bind_result($id, $db_username, $db_hash);
+                $stmt->fetch();
+
+                if (password_verify($password, $db_hash)) { // jelszó ellenőrzés
+                    $_SESSION['user_id'] = $id;
+                    $_SESSION['username'] = $db_username;
+                    header("Location: interpasshomepage.html"); // ide mehet a főoldal
+                    exit;
+                } else {
+                    $error_message = "Hibás jelszó.";
+                }
+            } else {
+                $error_message = "Nincs ilyen felhasználó.";
+            }
+            $stmt->close();
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -12,17 +54,24 @@
 
     <div class="wrapper">
         <form action="Login_Page_index.php" method="post">
+        
             
-            <h1>Login</h1>
+            <h1> <img class="logo" src="logo_and_text.png" alt="Logó">Login</h1>
+            
+            <?php if (!empty($error_message)): ?>
+                <div class="error-msg">
+                    <p><?php echo $error_message; ?></p>
+                </div>
+            <?php endif; ?>
             
             <div class="input-box">
-                <input type="text" name="username" placeholder="Username" required>
-                <i class='bxr  bx-user'  ></i> 
+                <input type="text" name="username" placeholder="Username" >
+                <i class='bx bx-user'></i> 
             </div>
             
             <div class="input-box">
-                <input type="password" name="password" placeholder="Password" required>
-                <i class='bxr  bx-lock'  ></i> 
+                <input type="password" name="password" placeholder="Password">
+                <i class='bx bx-lock'></i> 
             </div>
             
             <div class="remember-forgot">
@@ -30,60 +79,14 @@
                 <a href="#">Forgot Password?</a>
             </div>
 
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" name="login_btn" class="btn">Login</button>
             
             <div class="register-link">
-                <p>Dont have an account? <a href="Register_Page_index.php">Register</a></p>
+                <p>Don't have an account? <a href="Register_Page_index.php">Register</a></p>
             </div>
         
         </form>
     </div>
 
-    
-<script src="Login_Page_Source.js"></script>
 </body>
 </html>
-
-<?php
-session_start();
-require 'config.php';
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-
-    if ($username === '' || $password === '') {
-        die("Minden mező kötelező.");
-    }
-
-    // felhasználó lekérdezése
-    $stmt = $conn->prepare("SELECT id, username, jelszo_hash FROM users WHERE username = ?");
-    if (!$stmt) {
-        die("Hiba a lekérdezés előkészítésekor: " . $conn->$error);
-    }
-
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($id, $db_username, $db_hash);
-        $stmt->fetch();
-
-        
-
-        if (password_verify($password, $db_hash)) { // jelszó ellenőrzés[web:38][web:41]
-            $_SESSION['user_id'] = $id;
-            $_SESSION['username'] = $db_username;
-            header("Location: interpasshomepage.html"); // ide mehet a főoldal
-            exit;
-        } else {
-            echo "Hibás jelszó.";
-        }
-    } else {
-        echo "Nincs ilyen felhasználó.";
-    }
-
-    $stmt->close();
-}
-?>
