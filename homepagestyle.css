@@ -110,20 +110,24 @@ body {
 }
 
 /* Tartalom */
+
+/* Tartalom */
 .content {
   padding-top: 92px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
+  /* A min-height: 100vh; részt kivettük, hogy ne tolja le a slidert */
 }
+
 .cards {
   display: flex;
   justify-content: center;
   gap: 40px;
   max-width: 1150px;
   width: 100%;
-  padding: 44px 0 60px 0;
+  /* A padding 4. értéke (bottom) 60px-ről 10px-re csökkentve */
+  padding: 44px 0 10px 0; 
 }
 @media (max-width: 900px) {
   .cards { flex-direction: column; align-items: center; gap: 32px; }
@@ -183,4 +187,41 @@ body {
   height: 4px;
   background: var(--accent);
   margin-top: 50px;
+}
+
+
+
+
+/* A külső keret - ez rejti el azt, ami épp "kifut" a képernyőről */
+.ajanlott_slider {
+  width: 100%;
+  overflow: hidden;
+  background-color: #f9f9f9; 
+  padding: 20px 0;
+}
+
+/* A belső sín, ami ténylegesen mozog */
+.slider-track {
+  display: flex; 
+  width: max-content; 
+  animation: slideLeft 20s linear infinite;
+}
+
+/* A kép SZIGORÚ méretezése */
+.slider-track img {
+  height: 150px !important; /* Itt állítod a magasságot. Az !important biztosítja, hogy semmi ne írja felül */
+  width: auto !important;   /* Arányok megtartása */
+  max-width: none;          /* Nem engedjük, hogy a képernyőhöz igazodjon */
+  flex-shrink: 0;           /* Megakadályozza, hogy a flexbox összenyomja vagy széthúzza */
+  object-fit: contain;      /* Biztosítja, hogy a kép ne torzuljon */
+}
+
+/* A végtelenített animáció kulcskockái */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 10px)); 
+  }
 }
