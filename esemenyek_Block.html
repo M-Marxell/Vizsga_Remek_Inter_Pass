@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kártya Grid</title>
+    <link rel="stylesheet" href="esemenyek_Block.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Egy kis alap stílus a szűrősávnak, hogy ne legyen csúnya (tedd a CSS fájlodba) */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: #f4f4f4;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            justify-content: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Keresés név alapján...">
+        
+        <select id="typeFilter">
+            <option value="">Minden típus</option>
+            <option value="Sport">Sport</option>
+            <option value="Színház">Színház</option>
+            <option value="Mozi">Mozi</option>
+            <option value="Fesztivál">Fesztivál</option>
+            <option value="Koncert">Koncert</option>
+            <option value="Rendezvények">Rendezvények</option>
+            <option value="Egyéb">Egyéb</option>
+        </select>
+
+        <select id="ageFilter">
+            <option value="">Minden korosztály</option>
+            <option value="/e">Családi (/e)</option>
+            <option value="+6">6 éven felülieknek (+6)</option>
+            <option value="+12">12 éven felülieknek (+12)</option>
+            <option value="+16">16 éven felülieknek (+16)</option>
+            <option value="+18">18 éven felülieknek (+18)</option>
+        </select>
+
+        <input type="number" id="priceFilter" placeholder="Max. ár (Ft)" min="0" step="100">
+        <input type="date" id="dateFilter" title="Esemény dátuma">
+        <input type="text" id="locationFilter" placeholder="Helyszín (pl. Budapest)">
+    </div>
+
+    <nav>
+        <div class="container" id="cardContainer">
+            <p>Adatok betöltése...</p>
+        </div>
+    </nav>
+
+<script src="esemenyek_Block.js"></script>
+</body>
+</html>
