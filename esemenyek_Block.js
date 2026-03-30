@@ -72,7 +72,7 @@ function renderCards(data) {
                 <p><strong>Korhatár:</strong> ${esemeny.korhatar}</p>
                 <p><strong>Időpont:</strong> ${esemeny.idopont}</p>
                 <p style="margin-top: 15px;">${esemeny.rovid_leiras}</p>            
-                <div class="price-tag">${esemeny.jegy_ara} Ft</div>
+                <div class="price-tag btn_cart" data-id="${esemeny.id}" data-name="${esemeny.nev}" data-price="${esemeny.jegy_ara}">${esemeny.jegy_ara} Ft</div>
             </div>
         `;
 

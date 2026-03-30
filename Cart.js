@@ -79,13 +79,17 @@ function frissitOsszesen() {
 document.addEventListener('DOMContentLoaded', () => {
     megjelenitKosarat();
 
-    document.querySelectorAll('.btn_cart').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = parseInt(btn.dataset.id);
-            const name = btn.dataset.name;
-            const price = parseInt(btn.dataset.price);
+    // Esemény delegálás a dinamikusan létrehozott .btn_cart elemekhez
+    document.body.addEventListener('click', (event) => {
+        const btn = event.target.closest('.btn_cart');
+        if (!btn) return;
+
+        const id = parseInt(btn.dataset.id);
+        const name = btn.dataset.name;
+        const price = parseInt(btn.dataset.price);
+        if (!isNaN(id) && name && !isNaN(price)) {
             hozzaadKosarhoz(id, name, price);
             alert('Termék hozzáadva a kosárhoz!');
-        });
+        }
     });
 });
