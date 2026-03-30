@@ -309,3 +309,8 @@ body {
 .checkout-btn:hover {
   background: var(--accent-dark);
 }
+
+#kosar_felirat{
+    color: #181616;
+    text-align: center;
+}
