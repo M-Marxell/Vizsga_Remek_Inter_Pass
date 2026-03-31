@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapcsolat - InterPass</title>
+    <link rel="stylesheet" href="KapcsolatRolunk.css">
+</head>
+<body>
+    <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="top-title"><a href="interpasshomepage.html">Inter Pass</a></div>
+        <div class="right-section">
+            <a href="Cart.html" class="cart-icon">🛒</a>
+            <div class="logo">LOGO</div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav>
+            <ul>
+                <li><a href="interpasshomepage.html">Kezdőlap</a></li>
+                <li><a href="rolunk.html">Rólunk</a></li>
+                <li><a href="esemenyek_Block.html">Események</a></li>
+                <li><a href="kapcsolat.html">Kapcsolat</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        <div class="contact-content">
+            <h1>Kapcsolat</h1>
+            <p>Lépjen kapcsolatba velünk, ha kérdése van vagy segítséget igényel!</p>
+            
+            <div class="contact-info">
+                <h2>Elérhetőségeink</h2>
+                <p><strong>Email:</strong> info@interpass.hu</p>
+                <p><strong>Telefon:</strong> +36 1 234 5678</p>
+                <p><strong>Cím:</strong> 1051 Budapest, Váci utca 1.</p>
+                <p><strong>Nyitvatartás:</strong> H-P: 9:00-18:00</p>
+            </div>
+            
+            <div class="contact-form">
+                <h2>Üzenet küldése</h2>
+                <form action="#" method="post">
+                    <label for="name">Név:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Üzenet:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    
+                    <button type="submit">Küldés</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

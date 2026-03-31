@@ -27,7 +27,33 @@
     </style>
 </head>
 <body>
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="top-title">Inter Pass</div>
+    <div class="right-section">
+      <a href="Cart.html" class="cart-icon">🛒</a>
+      <div class="logo">LOGO</div>
+    </div>
+  </header>
 
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <nav>
+      <ul>
+        <li><a href="interpasshomepage.html">Kezdőlap</a></li>
+        <li><a href="rolunk.html">Rólunk</a></li>
+        <li><a href="esemenyek_Block.html">Szolgáltatások</a></li>
+        <li><a href="kapcsolat.html">Kapcsolat</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <main>
     <div class="filter-bar">
         <input type="text" id="searchInput" placeholder="Keresés név alapján...">
         
@@ -62,6 +88,7 @@
         </div>
     </nav>
 
+<script src="script.js" defer></script>
 <script src="esemenyek_Block.js"></script>
 </body>
 </html>

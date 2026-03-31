@@ -1,28 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    --accent: #ff8c00;
+    --accent-dark: #e67e00;
+    --bg: #f7f7f9;
+    --card-bg: #ffffff;
+    --text: #333;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
 body {
-    background-color: white;
+    background-color: var(--bg);
     margin-top: 100px;
     font-family: "Saira", sans-serif;
+    color: var(--text);
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 66px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+    z-index: 999;
+}
+
+.topbar .top-title {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.topbar .top-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.topbar .logo,
+.topbar .cart-icon {
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 8px;
 }
 
 .card {
     position: relative;
-    background-color: #ffffff;
+    background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    height: 350px;
-    cursor: pointer;
-    transition: box-shadow 0.4s ease, transform 0.4s ease; 
+    box-shadow: var(--shadow);
+    min-height: 360px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 11px 22px rgba(0, 0, 0, 0.2);
 }
 
 .card-image {
@@ -51,35 +111,29 @@ body {
 }
 
 .card-details {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 25px;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    border-top: 5px solid #ff8c00;
+    padding: 20px;
+    opacity: 1;
+    transform: none;
+    border-top: 5px solid var(--accent);
 }
 
 .card-details h3 {
     margin: 0 0 15px 0;
-    color: #ff8c00;
+    color: var(--accent);
 }
 
 .card-details p {
     margin: 5px 0;
-    color: #333;
+    color: var(--text);
     font-size: 0.9rem;
 }
 
 .card-details strong {
-    color: #ff8c00;
+    color: var(--accent);
 }
 
 .card:hover .card-image {
@@ -90,43 +144,52 @@ body {
     opacity: 0;
 }
 
-.card:hover .card-details {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .price-tag {
-    margin-top: auto;
-    background-color: #ff8c00;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 6px;
+    margin-top: 20px;
+    background-color: var(--accent);
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
     text-align: center;
-    font-weight: bold;
-    position: relative;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     cursor: pointer;
+    position: relative;
 }
 
 .price-tag::after {
+    content: "\f07a";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
-    content: "\f07a";
     position: absolute;
+    right: 12px;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffffff;
-    font-size: 1.3rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translateY(-50%);
 }
 
 .price-tag:hover {
-    color: transparent;
-    background-color: #e67e00;
+    background-color: var(--accent-dark);
 }
 
-.price-tag:hover::after {
-    opacity: 1; 
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px;
+    background: #fff;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    justify-content: center;
+}
+
+.filter-bar input,
+.filter-bar select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
 }
