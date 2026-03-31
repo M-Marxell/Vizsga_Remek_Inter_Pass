@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --accent: #d2691e;
+  --accent-dark: #8a470d;
+  --bg: #f5f6fa;
+  --card-bg: #fff;
+  --radius: 18px;
+  --transition: 0.22s cubic-bezier(.4,0,.2,1);
+  --shadow: 0 6px 20px rgba(210,105,30,0.08), 0 1.5px 7px rgba(100,100,100,0.07);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: #181616;
+  overflow-x: hidden;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+  border-bottom: 1.5px solid rgba(78,30,6,0.12);
+  padding: 0 36px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--accent);
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(210,105,30,0.07);
+}
+
+.menu-btn {
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 9px 10px 9px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background var(--transition);
+}
+.menu-btn span {
+  display: block;
+  background: var(--accent-dark);
+  height: 3px;
+  width: 27px;
+  margin: 3px 0;
+  border-radius: 2.5px;
+  transition: var(--transition);
+}
+
+.top-title {
+  font-weight: 700;
+  font-size: 1.39em;
+  letter-spacing: 2.5px;
+  color: #fff;
+  text-shadow: 0 1.2px 5px rgba(90,45,10,0.09);
+}
+
+.top-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1.2px;
+  font-size: 1em;
+}
+
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0; left: -258px;
+  width: 230px; height: 100%;
+  background: #fff;
+  border-right: 2px solid var(--accent);
+  box-shadow: 4px 0 16px rgba(210,105,30,0.09);
+  padding-top: 85px;
+  transition: var(--transition);
+  z-index: 1100;
+}
+.sidebar.open { left: 0; }
+.sidebar nav ul { list-style: none; padding: 0; }
+.sidebar nav ul li { margin: 18px 0; }
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: var(--accent-dark);
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: 6px;
+  display: block;
+  transition: background var(--transition), color var(--transition);
+}
+.sidebar nav ul li a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.32);
+  opacity: 0; visibility: hidden;
+  transition: var(--transition);
+  z-index: 1060;
+}
+.overlay.active {
+  opacity: 1; visibility: visible;
+}
+
+
+
+/* Kosár stílusok */
+.cart-container {
+  padding: 100px 36px 50px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cart-container h2 {
+  margin-bottom: 20px;
+  color: var(--accent-dark);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.item-details h3 {
+  margin-bottom: 5px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.quantity-controls button:hover {
+  background: var(--accent-dark);
+}
+
+.remove-btn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.remove-btn:hover {
+  background: #c82333;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.checkout-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  padding: 13px 36px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background var(--transition);
+}
+
+.checkout-btn:hover {
+  background: var(--accent-dark);
+}
+
+#kosar_felirat{
+    color: #181616;
+    text-align: center;
+}
+
+.cart-icon {
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color var(--transition);
+}
+
+.cart-icon:hover {
+  color: var(--accent-dark);
+}
